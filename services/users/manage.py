@@ -1,14 +1,17 @@
 # services/users/manage.py
 
-
-from flask.cli import FlaskGroup
 import unittest
 
-from project import app, db  # new
+from flask.cli import FlaskGroup
+
+from project import create_app, db  # new
+from project.api.models import User  # new
+
 # to read __init__.py under folder project so it can include variable app and db
 
+app = create_app()  # new
+cli = FlaskGroup(create_app=create_app)  # new
 
-cli = FlaskGroup(app)
 
 # new
 # This registers a new command, recreate_db, to the CLI 
