@@ -1,7 +1,8 @@
 # services/users/project/tests/test_users.py
 
 
-import json, unittest
+import json
+import unittest
 
 # import unittest
 
@@ -41,7 +42,9 @@ class TestUserService(BaseTestCase):
                 ),
                 content_type="application/json",
             )
-            data = json.loads(response.data.decode())  # convert JSON to Python objects
+            data = json.loads(
+                response.data.decode()
+            )  # convert JSON to Python objects
             self.assertEqual(response.status_code, 201)
             # 請求成功且新的資源成功被創建，這通常用於 PUT 請求後的回應。
             self.assertIn("michael@mherman.org was added!", data["message"])
@@ -100,7 +103,8 @@ class TestUserService(BaseTestCase):
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
         user = add_user("michael", "michael@mherman.org")
-        # Below three are moved out of this class and become an independent function
+        # Below three are moved out of this class
+        # and become an independent function
         # user = User(username='michael', email='michael@mherman.org')
         # db.session.add(user)
         # db.session.commit()
@@ -140,9 +144,13 @@ class TestUserService(BaseTestCase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(len(data["data"]["users"]), 2)
             self.assertIn("michael", data["data"]["users"][0]["username"])
-            self.assertIn("michael@mherman.org", data["data"]["users"][0]["email"])
+            self.assertIn(
+                "michael@mherman.org", data["data"]["users"][0]["email"]
+            )
             self.assertIn("fletcher", data["data"]["users"][1]["username"])
-            self.assertIn("fletcher@notreal.com", data["data"]["users"][1]["email"])
+            self.assertIn(
+                "fletcher@notreal.com", data["data"]["users"][1]["email"]
+            )
             self.assertIn("success", data["status"])
 
     def test_main_no_users(self):

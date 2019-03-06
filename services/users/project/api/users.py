@@ -1,5 +1,6 @@
 # services/users/project/api/users.py
-# Here, we created a new instance of the Blueprint class and bound the ping_pong() view function to it.
+# Here, we created a new instance of the Blueprint
+# class and bound the ping_pong() view function to it.
 
 
 from flask import Blueprint, jsonify, request, render_template
@@ -30,7 +31,9 @@ def add_user():
     email = post_data.get("email")
     try:
         user = User.query.filter_by(email=email).first()
-        if not user:  # user should be blank as no existing user found in database
+        if (
+            not user
+        ):  # user should be blank as no existing user found in database
             db.session.add(User(username=username, email=email))
             db.session.commit()
             response_object["status"] = "success"

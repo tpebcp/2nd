@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy  # new
 # instantiate the db
 db = SQLAlchemy()
 
+
 # new
 def create_app(script_info=None):
 
@@ -26,7 +27,8 @@ def create_app(script_info=None):
     app.register_blueprint(users_blueprint)
 
     # shell context for flask cli
-    # Take note of the shell_context_processor. This is used to register the app and db to the shell.
+    # Take note of the shell_context_processor.
+    # This is used to register the app and db to the shell.
     @app.shell_context_processor
     def ctx():
         return {"app": app, "db": db}
