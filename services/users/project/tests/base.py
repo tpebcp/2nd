@@ -6,8 +6,8 @@ app = create_app()
 
 
 class BaseTestCase(TestCase):
-    def create_app(self): # This one is a must for any Flask Test
-        app.config.from_object('project.config.TestingConfig')
+    def create_app(self):  # This one is a must for any Flask Test
+        app.config.from_object("project.config.TestingConfig")
         return app
 
     def setUp(self):
